@@ -1,152 +1,137 @@
- // A simple chatbot that responds with some predefined answers
- function chatbot(input) {
-    let output = "";
-    input = input.toLowerCase();
-    if (input.includes("hello") || input.includes("hi")) {
-      output = "Hello, nice to meet you!";
-    } else if (input.includes("how are you")) {
-      output = "I'm doing fine, thank you for asking.";
-    } else if (input.includes("what is your name")) {
-      output = "My name is Jarvis, I'm a chatbot.";
-    } else if (input.includes("what can you do")) {
-      output = "I can chat with you and answer some simple questions.";
-    } else if (input.includes("tell me a joke")) {
-      output = "Why did the chicken go to the seance? To get to the other side.";
-    } else {
-      output = "Sorry, I don't understand that. Please try something else.";
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #e0e0e0;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.chat-header {
+    background-color: #3a3a3a;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+.chat-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.message-content {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 70%;
+}
+
+.user-message {
+    flex-direction: row-reverse;
+}
+
+.user-message .message-content {
+    background-color: #4a90e2;
+    margin-right: 10px;
+}
+
+.bot-message .message-content {
+    background-color: #3a3a3a;
+    margin-left: 10px;
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chat-input-container {
+    display: flex;
+    padding: 15px;
+    background-color: #2a2a2a;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #4a4a4a;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    outline: none;
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#send-button:hover {
+    background-color: #3a7bc8;
+}
+
+#send-button:disabled {
+    background-color: #2a5a8a;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .chat-container {
+        height: 100vh;
+        border-radius: 0;
     }
-    return output;
-  }
+}
 
-  // Display the user message on the chat
-  function displayUserMessage(message) {
-    let chat = document.getElementById("chat");
-    let userMessage = document.createElement("div");
-    userMessage.classList.add("message");
-    userMessage.classList.add("user");
-    let userAvatar = document.createElement("div");
-    userAvatar.classList.add("avatar");
-    let userText = document.createElement("div");
-    userText.classList.add("text");
-    userText.innerHTML = message;
-    userMessage.appendChild(userAvatar);
-    userMessage.appendChild(userText);
-    chat.appendChild(userMessage);
-    chat.scrollTop = chat.scrollHeight;
-  }
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
 
-  // Display the bot message on the chat
-  function displayBotMessage(message) {
-    let chat = document.getElementById("chat");
-    let botMessage = document.createElement("div");
-    botMessage.classList.add("message");
-    botMessage.classList.add("bot");
-    let botAvatar = document.createElement("div");
-    botAvatar.classList.add("avatar");
-    let botText = document.createElement("div");
-    botText.classList.add("text");
-    botText.innerHTML = message;
-    botMessage.appendChild(botAvatar);
-    botMessage.appendChild(botText);
-    chat.appendChild(botMessage);
-    chat.scrollTop = chat.scrollHeight;
-  }
+::-webkit-scrollbar-track {
+    background: #2a2a2a;
+}
 
-  // Send the user message and get the bot response
-  function sendMessage() {
-    let input = document.getElementById("input").value;
-    if (input) {
-      displayUserMessage(input);
-      let output = chatbot(input);
-      setTimeout(function() {
-        displayBotMessage(output);
-      }, 1000);
-      document.getElementById("input").value = "";
-    }
-  }
+::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 4px;
+}
 
-  // Add a click event listener to the button
-  document.getElementById("button").addEventListener("click", sendMessage);
-
-  // Add a keypress event listener to the input
-  document.getElementById("input").addEventListener("keypress", function(event) {
-    if (event.keyCode == 13) {
-      sendMessage();
-    }
-     // A simple chatbot that responds with some predefined answers
- function chatbot(input) {
-    let output = "";
-    input = input.toLowerCase();
-    if (input.includes("hello") || input.includes("hi")) {
-      output = "Hello, nice to meet you!";
-    } else if (input.includes("how are you")) {
-      output = "I'm doing fine, thank you for asking.";
-    } else if (input.includes("what is your name")) {
-      output = "My name is Jarvis, I'm a chatbot.";
-    } else if (input.includes("what can you do")) {
-      output = "I can chat with you and answer some simple questions.";
-    } else if (input.includes("tell me a joke")) {
-      output = "Why did the chicken go to the seance? To get to the other side.";
-    } else {
-      output = "Sorry, I don't understand that. Please try something else.";
-    }
-    return output;
-  }
-
-  // Display the user message on the chat
-  function displayUserMessage(message) {
-    let chat = document.getElementById("chat");
-    let userMessage = document.createElement("div");
-    userMessage.classList.add("message");
-    userMessage.classList.add("user");
-    let userAvatar = document.createElement("div");
-    userAvatar.classList.add("avatar");
-    let userText = document.createElement("div");
-    userText.classList.add("text");
-    userText.innerHTML = message;
-    userMessage.appendChild(userAvatar);
-    userMessage.appendChild(userText);
-    chat.appendChild(userMessage);
-    chat.scrollTop = chat.scrollHeight;
-  }
-
-  // Display the bot message on the chat
-  function displayBotMessage(message) {
-    let chat = document.getElementById("chat");
-    let botMessage = document.createElement("div");
-    botMessage.classList.add("message");
-    botMessage.classList.add("bot");
-    let botAvatar = document.createElement("div");
-    botAvatar.classList.add("avatar");
-    let botText = document.createElement("div");
-    botText.classList.add("text");
-    botText.innerHTML = message;
-    botMessage.appendChild(botAvatar);
-    botMessage.appendChild(botText);
-    chat.appendChild(botMessage);
-    chat.scrollTop = chat.scrollHeight;
-  }
-
-  // Send the user message and get the bot response
-  function sendMessage() {
-    let input = document.getElementById("input").value;
-    if (input) {
-      displayUserMessage(input);
-      let output = chatbot(input);
-      setTimeout(function() {
-        displayBotMessage(output);
-      }, 1000);
-      document.getElementById("input").value = "";
-    }
-  }
-
-  // Add a click event listener to the button
-  document.getElementById("button").addEventListener("click", sendMessage);
-
-  // Add a keypress event listener to the input
-  document.getElementById("input").addEventListener("keypress", function(event) {
-    if (event.keyCode == 13) {
-      sendMessage();
-    }
-  });
-  });
+::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+}
